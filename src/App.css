@@ -1,0 +1,56 @@
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+	background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: red;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:active {
+	background: #00b2ff;
+}
+
+/* Variables */
+:root {
+	--main-background: #121212;
+	--nav-background: #242526;
+	--dark-primary: #1c1c1c;
+	--accent-main: white;
+	--accent1: #e4e4e4;
+	--accent2: #949494;
+	--light-blue: #00b2ff;
+	--dark-blue: #006aff;
+	--orange: #ff7b00;
+}
+
+.app {
+	font-family: "Poppins";
+	width: 700px;
+	margin: 0 auto;
+	/* box-shadow: 1px 1px 5px black; */
+}
+
+button:active {
+	transform: scale(0.98);
+}
+
+@media only screen and (max-width: 700px) {
+	.app {
+		width: 100%;
+	}
+}

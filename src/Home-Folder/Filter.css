@@ -1,0 +1,44 @@
+:root {
+	--main-background: #121212;
+	--nav-background: #242526;
+	--dark-primary: #1c1c1c;
+	--accent-main: white;
+	--accent1: #e4e4e4;
+	--accent2: #949494;
+}
+
+.filter-container {
+	display: flex;
+	background-color: var(--nav-background);
+	border-bottom: 1px solid grey;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.filter {
+	display: flex;
+	align-items: center;
+}
+
+.filter h4 {
+	color: var(--accent2);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.filter-select {
+	padding: 3px;
+	border-radius: 7px;
+	outline: none;
+	border: none;
+	background-color: rgb(219, 219, 219);
+	color: rgb(24, 24, 24);
+	font-weight: 500;
+	font-size: 12px;
+	text-align: center;
+}
+
+.f1,
+.f2 {
+	flex: 1;
+}

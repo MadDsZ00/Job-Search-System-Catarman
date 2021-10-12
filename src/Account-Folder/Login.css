@@ -1,0 +1,179 @@
+.login-container {
+	text-align: center;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	background: #1b1b1b;
+	position: relative;
+	overflow: hidden;
+}
+.login-container a .login-btn {
+	top: 0;
+	left: 0;
+}
+
+.form-login {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	margin: 10px 0;
+}
+
+.login-form label {
+	text-align: left;
+	font-size: 13px;
+}
+
+.login-form input,
+.login-form .password-field input {
+	outline: none;
+	border: 1px solid transparent;
+	font-size: 13px;
+	padding: 5px 40px 5px 30px;
+	border-radius: 5px;
+	font-weight: 500;
+	text-align: center;
+	background-color: rgb(255, 255, 255, 0.1);
+	color: white;
+	transition: 0.1s linear;
+	width: 100%;
+}
+
+.login-form input:focus {
+	border: 1px solid steelblue;
+}
+
+.login-form select {
+	width: 100%;
+	border-radius: 5px;
+	padding: 4px 5px;
+	outline: none;
+	border: none;
+	color: rgb(24, 24, 24);
+	font-weight: 500;
+}
+
+.form-login button {
+	background: linear-gradient(to bottom, #00b2ff, #006aff);
+	color: white;
+	border: none;
+	border-radius: 7px;
+	padding: 5px 20px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.25s;
+	font-weight: 600;
+	width: 100%;
+	margin: 10px 0;
+
+	border: solid 3px transparent;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0)
+		),
+		linear-gradient(-20deg, #00b2ff, #006aff);
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	box-shadow: 2px 1000px 1px rgb(28, 28, 28, 0.9) inset;
+}
+
+.form-login button:hover {
+	box-shadow: none;
+	color: white;
+}
+
+.form-login p {
+	color: grey;
+	font-size: 12px;
+}
+
+.form-login p a {
+	color: #ff7300;
+	cursor: pointer;
+}
+
+.content {
+	/* border: 1px solid grey; */
+	width: 85%;
+	margin: 0px auto 20px auto;
+	border-radius: 10px;
+	padding-bottom: 20px;
+	z-index: 9;
+	background: rgb(27, 27, 27, 0.9);
+	box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.6);
+}
+
+.content .login-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content .login-header h3 {
+	color: white;
+	font-size: 15px;
+	padding: 10px 0;
+}
+
+.content .login-header select {
+	background-color: transparent;
+	outline: none;
+	border: none;
+	font-size: 15px;
+	color: #006aff;
+	font-weight: 500;
+	margin: 0;
+}
+
+.password-field {
+	position: relative;
+}
+.eye {
+	width: 20px;
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	cursor: pointer;
+	opacity: 20%;
+}
+
+.error-message {
+	background-color: rgb(233, 50, 50);
+	padding: 10px 0;
+	cursor: pointer;
+}
+
+.error-message h4 {
+	color: rgb(218, 218, 218);
+	font-weight: 500;
+	text-shadow: 1px 1px 0px black;
+	font-size: 13px;
+}
+
+/* background styles */
+
+.circle,
+.signup-circle {
+	width: 100%;
+	border-radius: 100px;
+	height: 500px;
+	background-color: #006aff;
+	position: absolute;
+	top: 290px;
+	z-index: 1;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0)
+		),
+		linear-gradient(-20deg, #00b2ff, #006aff);
+}
+
+.signup-circle {
+	top: 100px;
+	height: 700px;
+}
