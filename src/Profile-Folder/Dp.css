@@ -204,7 +204,7 @@
 	padding: 0 4px;
 }
 .switch {
-	border: 1px solid grey;
+	border: 1px solid var(--border1);
 	display: flex;
 	align-items: center;
 	padding: 3px 5px;

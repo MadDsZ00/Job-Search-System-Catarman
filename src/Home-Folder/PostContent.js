@@ -10,12 +10,6 @@ export class PostContent extends Component {
 		};
 	}
 
-	sample = () => {
-		this.setState({ height: this.refs.inner.clientHeight });
-
-		console.log(this.state.height);
-	};
-
 	render() {
 		const {
 			jobTitle,
@@ -29,15 +23,9 @@ export class PostContent extends Component {
 		} = this.props.info;
 		const { showMore } = this.props;
 
-		this.sample();
-
 		return (
 			<div
 				className='post-content'
-				// onClick={() => {
-				// 	let test = this.refs.inner.clientHeight;
-				// 	this.sample();
-				// }}
 				style={{
 					height: this.props.showMore ? "175px" : "100%",
 				}}

@@ -126,7 +126,7 @@ export class Dp extends Component {
 				<h2>Ralf Renz Estellana Bantilo</h2>
 
 				<div className='active-status-container'>
-					<h3>Active Status</h3>
+					<h3>Available to hire</h3>
 
 					<label className='switch'>
 						<p className='switch-on'>on</p>
