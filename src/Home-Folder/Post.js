@@ -116,6 +116,50 @@ export class Post extends Component {
 					</div>
 
 					<div className='post-body'>
+						<div className='post-basic-content'>
+							<h3 className='job-title'>{info.jobTitle}</h3>
+
+							<div className='post-detail-container'>
+								<div className='post-detail-group1'>
+									<div className='post-detail'>
+										<p>Job Category:</p>
+										<h4>{info.category}</h4>
+									</div>
+									<div className='post-detail'>
+										<p>Required No. of Employees:</p>
+										<h4>{info.reqNoEmp}</h4>
+									</div>
+									<div className='post-detail'>
+										<p>Salary:</p>
+										<h4>{info.salary}</h4>
+									</div>
+								</div>
+
+								<div className='post-detail-group2'>
+									<div className='post-detail'>
+										<p>Job Type:</p>
+										<h4>{info.jobType}</h4>
+									</div>
+									<div className='post-detail'>
+										<p>Preferred Sex:</p>
+										<h4>{info.prefSex}</h4>
+									</div>
+									<div className='post-detail'>
+										<p>Job Vacancy Status:</p>
+										<div className='active-status'>
+											<div
+												className='active-circle'
+												style={
+													this.props.info.status === "Active"
+														? { backgroundColor: "#00ff40" }
+														: { backgroundColor: "#ff0000" }
+												}></div>
+											<h4>{info.status}</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<PostContent info={info} showMore={this.state.showMore} />
 
 						<div className='post-btn'>

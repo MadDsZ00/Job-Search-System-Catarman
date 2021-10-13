@@ -37,6 +37,10 @@
 	transition: 0.5s;
 }
 
+.post-basic-content {
+	padding: 0 15px;
+}
+
 .account-profile {
 	min-width: 50px;
 	width: 50px;
