@@ -628,17 +628,18 @@ export class App extends Component {
 						{/* Home Sub Components */}
 						<Route
 							exact
-							path='/home/company-profile'
+							path={`/${this.state.activePage}/company-profile`}
 							render={() => (
 								<CompanyProfile
 									infos={this.state.infos}
 									targetCompany={this.state.targetCompany}
+									activePage={this.state.activePage}
 								/>
 							)}
 						/>
 						<Route
 							exact
-							path='/home/apply-now'
+							path={`/${this.state.activePage}/apply-now`}
 							render={() => (
 								<ApplicationForm
 									jobSeeker={this.state.jobSeeker}
@@ -646,6 +647,7 @@ export class App extends Component {
 									infos={this.state.infos}
 									targetCompany={this.state.targetCompany}
 									handleApplication={this.handleApplication}
+									activePage={this.state.activePage}
 								/>
 							)}
 						/>
@@ -653,11 +655,10 @@ export class App extends Component {
 							path='/search'
 							render={() => (
 								<SearchEngine
+									activePage={this.state.activePage}
 									infos={this.state.infos}
 									onDelete={this.deletePost}
 									handleChangePage={this.handleChangePage}
-									scrollPosition={this.state.scrollPosition}
-									handleScroll={this.handleScroll}
 									setCompanyID={this.setCompanyID}
 									hasApplied={this.state.hasApplied}
 									closeHasApplied={this.closeHasApplied}

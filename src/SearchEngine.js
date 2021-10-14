@@ -7,22 +7,101 @@ import Gap from "./Gap";
 import { Link } from "react-router-dom";
 
 export class SearchEngine extends Component {
-	state = {
-		text: "",
-	};
+	constructor() {
+		super();
+		this.state = {
+			text: "",
+			scrollPosition: 0,
+		};
+	}
 
-	setText = (e) => {
-		this.setState({
+	setText = async (e) => {
+		await this.setState({
 			text: e,
 		});
+
+		localStorage.setItem("search", this.state.text);
+	};
+
+	handleScroll = () => {
+		this.setState({
+			scrollPosition: window.pageYOffset,
+		});
+	};
+
+	handleChangePage = async (page) => {
+		await this.props.handleChangePage(page);
+	};
+
+	componentDidMount = async () => {
+		const prevScroll = localStorage.getItem("scroll");
+
+		window.addEventListener("scroll", this.listenToScroll);
+		window.scrollTo(0, this.state.scrollPosition);
+		this.handleScroll();
+		await this.handleChangePage("search");
+
+		const prevSearch = localStorage.getItem("search");
+
+		if (prevSearch === null) {
+			return this.setState({
+				text: "",
+			});
+		}
+		if (!prevScroll) {
+			return this.setState({
+				scrollPosition: 0,
+			});
+		}
+
+		this.setState({
+			text: prevSearch,
+			scrollPosition: prevScroll,
+		});
+
+		// console.log("componentDidMount", this.state.scrollPosition);
+	};
+
+	componentWillUnmount = () => {
+		window.removeEventListener("scroll", this.listenToScroll);
+		this.handleScroll();
+		window.scrollTo(0, this.state.scrollPosition);
+
+		this.setState({
+			text: this.state.text,
+			scrollPosition: this.state.scrollPosition,
+		});
+
+		// console.log("componentWillUnmount", this.state.scrollPosition);
+	};
+
+	listenToScroll = () => {
+		const winScroll =
+			document.body.scrollTop || document.documentElement.scrollTop;
+
+		const height =
+			document.documentElement.scrollHeight -
+			document.documentElement.clientHeight;
+
+		const scrolled = winScroll / height;
+		this.setState({
+			scrollPosition: scrolled,
+		});
+
+		localStorage.setItem("scroll", this.state.scrollPosition);
 	};
 
 	render() {
 		const { infos } = this.props;
+
 		return (
 			<div className='search-container'>
 				<div className='search-panel'>
-					<Link to='/home'>
+					<Link
+						to='/home'
+						onClick={() => {
+							localStorage.clear();
+						}}>
 						<img
 							className='search-panel-icon'
 							src={LeftArrow}
@@ -37,12 +116,14 @@ export class SearchEngine extends Component {
 						onChange={(e) => {
 							this.setText(e.target.value);
 						}}
+						value={this.state.text}
 					/>
 				</div>
 
 				{this.state.text !== "" && (
 					<div className='search-engine'>
 						<p
+							className='results'
 							style={{
 								paddingTop: "20px",
 							}}>{`Finding results for "${this.state.text}"`}</p>
@@ -75,23 +156,26 @@ export class SearchEngine extends Component {
 											toggleCompanyProfile={
 												this.toggleCompanyProfile
 											}
-											togglePanel={this.state.togglePanel}
+											activePage={this.props.activePage}
 											setCompanyID={this.props.setCompanyID}
 											isDeleted={this.props.isDeleted}
+											showDelete={false}
 										/>
 									</div>
-
-									// <Feed
-									// 	onDelete={this.props.onDelete}
-									// 	infos={this.props.infos}
-									// 	scrollPosition={this.props.scrollPosition}
-									// 	handleScroll={this.props.handleScroll}
-									// 	setCompanyID={this.props.setCompanyID}
-									// />
 								);
 							}
 						})}
 					</div>
+				)}
+
+				{this.state.text === "" ? (
+					<div className='search-content'>
+						<p className='search-text'>
+							Nothing to display, start typing...
+						</p>
+					</div>
+				) : (
+					""
 				)}
 			</div>
 		);

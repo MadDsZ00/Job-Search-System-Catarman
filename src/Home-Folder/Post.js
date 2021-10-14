@@ -52,7 +52,7 @@ export class Post extends Component {
 				<div className='post-container'>
 					<div className='post-header'>
 						<div className='upperLeft-info'>
-							<Link to='/home/company-profile'>
+							<Link to={`/${this.props.activePage}/company-profile`}>
 								<div className='account-profile'>
 									<img
 										src={info.imageURL}
@@ -93,12 +93,14 @@ export class Post extends Component {
 							</div>
 						</div>
 						<div className='upperRight-info'>
-							<img
-								src={DeleteIcon}
-								alt='Delete'
-								title={`Close this post from ${info.companyName}`}
-								onClick={this.viewModal}
-							/>
+							{this.props.showDelete && (
+								<img
+									src={DeleteIcon}
+									alt='Delete'
+									title={`Close this post from ${info.companyName}`}
+									onClick={this.viewModal}
+								/>
+							)}
 
 							{this.state.isModalOpen ? (
 								<Modal
@@ -166,7 +168,7 @@ export class Post extends Component {
 							<button onClick={this.seeMore} className='see-more'>
 								{this.state.showMore ? "See More" : "See Less"}
 							</button>
-							<Link to='/home/apply-now'>
+							<Link to={`/${this.props.activePage}/apply-now`}>
 								<button
 									title={
 										info.isApplied
@@ -197,5 +199,9 @@ export class Post extends Component {
 		);
 	}
 }
+
+Post.defaultProps = {
+	showDelete: true,
+};
 
 export default Post;

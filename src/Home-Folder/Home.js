@@ -15,7 +15,6 @@ export class Home extends Component {
 		super(props);
 		this.state = {
 			toggleHasApplied: [props.hasApplied],
-			text: "",
 		};
 	}
 
@@ -33,12 +32,6 @@ export class Home extends Component {
 
 	closeDeleteState = () => {
 		this.props.closeDeleteState();
-	};
-
-	setText = (e) => {
-		this.setState({
-			text: e,
-		});
 	};
 
 	componentDidMount = async () => {
@@ -86,6 +79,7 @@ export class Home extends Component {
 							scrollPosition={this.props.scrollPosition}
 							handleScroll={this.props.handleScroll}
 							setCompanyID={this.props.setCompanyID}
+							activePage={this.props.activePage}
 						/>
 					) : (
 						<p

@@ -41,7 +41,6 @@ export class Feed extends Component {
 			document.documentElement.clientHeight;
 
 		const scrolled = winScroll / height;
-
 		this.setState({
 			scrollPosition: scrolled,
 		});
@@ -58,6 +57,7 @@ export class Feed extends Component {
 							<Post
 								key={info.id}
 								info={info}
+								activePage={this.props.activePage}
 								onDelete={this.deletePost}
 								toggleCompanyProfile={this.toggleCompanyProfile}
 								togglePanel={this.state.togglePanel}

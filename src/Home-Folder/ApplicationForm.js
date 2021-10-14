@@ -119,7 +119,7 @@ export class ApplicationForm extends Component {
 
 		return (
 			<div className='application-form-container'>
-				<Link to='/home'>
+				<Link to={`/${this.props.activePage}`}>
 					{/* <button>Back</button> */}
 					<div className='back-icon-container'>
 						<img
@@ -419,6 +419,7 @@ export class ApplicationForm extends Component {
 								closeText='Back'
 								close={this.onCloseModal}
 								confirm={this.handleSubmit}
+								path={`/${this.props.activePage}`}
 							/>
 						) : (
 							""
