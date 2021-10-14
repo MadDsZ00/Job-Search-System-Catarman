@@ -13,7 +13,7 @@ import "./Navbar.css";
 export class Navbar extends Component {
 	state = {
 		numberOfClick: 0,
-		badge: 0,
+		badge: 4,
 	};
 
 	sample = () => {
