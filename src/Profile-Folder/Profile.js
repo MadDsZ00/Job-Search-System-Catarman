@@ -20,7 +20,6 @@ export class Profile extends Component {
 	};
 
 	render() {
-		// console.log(this.props.appliedJobs);
 		return (
 			<>
 				<Header jobSeeker={this.props.jobSeeker} />
@@ -43,11 +42,6 @@ export class Profile extends Component {
 						infos={this.props.infos}
 					/>
 				)}
-				{/* 
-				<Activities
-					infos={this.props.infos}
-					targetCompany={this.props.targetCompany}
-				/> */}
 
 				<div className='applied-jobs-container'>
 					<h3>Jobs you Applied for:</h3>
