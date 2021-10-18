@@ -20,6 +20,7 @@ export class Profile extends Component {
 	};
 
 	render() {
+		// console.log(this.props.appliedJobs);
 		return (
 			<>
 				<Header jobSeeker={this.props.jobSeeker} />
@@ -51,10 +52,21 @@ export class Profile extends Component {
 				<div className='applied-jobs-container'>
 					<h3>Jobs you Applied for:</h3>
 
-					<AppliedJob />
-					<AppliedJob />
-					<AppliedJob />
-					<AppliedJob />
+					{this.props.appliedJobs.length <= 0 && (
+						<p
+							style={{
+								textAlign: "center",
+								padding: "10px",
+								backgroundColor: "red",
+								fontSize: "12px",
+							}}>
+							You haven't applied for a job yet!
+						</p>
+					)}
+
+					{this.props.appliedJobs.map((appliedJob) => {
+						return <AppliedJob appliedJob={appliedJob} />;
+					})}
 				</div>
 
 				<div className='marginbottom' style={{ marginBottom: "200px" }} />

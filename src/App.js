@@ -54,6 +54,7 @@ export class App extends Component {
 				jobSeeker: [],
 				employer: [],
 			},
+			appliedJobs: [],
 		};
 	}
 
@@ -413,6 +414,7 @@ export class App extends Component {
 					},
 				],
 			},
+			appliedJobs: [],
 		});
 	}
 
@@ -494,8 +496,46 @@ export class App extends Component {
 					: info
 			),
 		}));
-
 		this.setApplied();
+
+		{
+			this.state.infos.map((info) => {
+				const data = {
+					id: info.id,
+					companyName: info.companyName,
+					timeStamp: {
+						min: info.timeStamp.min,
+						hour: info.timeStamp.hour,
+						day: info.timeStamp.day,
+						month: info.timeStamp.month + 1,
+						year: info.timeStamp.year,
+					},
+					companyAddress: info.address,
+					jobTitle: info.jobTitle,
+					category: info.jobCategory,
+					reqNoEmp: info.noReqEmp,
+					salary: info.salary,
+					jobType: info.jobType,
+					prefSex: info.prefSex,
+					qualification: info.jobQualification,
+					requirement: info.jobRequirement,
+					description: info.jobDescription,
+					employerName: info.employerName,
+					imageURL: info.imageURL,
+					isApplied: info.isApplied,
+					status: info.status,
+					dateApplied: {
+						min: new Date().getMinutes(),
+						hour: new Date().getHours(),
+						day: new Date().getDate(),
+						month: new Date().getMonth() + 1,
+						year: new Date().getFullYear(),
+					},
+				};
+
+				info.id === targetCompany && this.handleAppliedJobs(data);
+			});
+		}
 	};
 
 	setApplied = () => {
@@ -536,8 +576,15 @@ export class App extends Component {
 		console.log(this.state.user.employer);
 	};
 
+	handleAppliedJobs = (job) => {
+		const appliedJobs = this.state.appliedJobs;
+
+		this.setState({
+			appliedJobs: [job, ...appliedJobs],
+		});
+	};
+
 	render() {
-		console.log(this.state.user);
 		return (
 			// <div className='app'>
 			// 	<Router>
@@ -634,12 +681,13 @@ export class App extends Component {
 									activePage={this.state.activePage}
 									onAdd={this.onTogglePostForm}
 									showAdd={this.state.showAddTask}
-									onAddPost={this.addPost.bind(this)}
-									toggle={this.handleToggle.bind(this)}
+									onAddPost={this.addPost}
+									toggle={this.handleToggle}
 									infos={this.state.infos}
 									handleChangePage={this.handleChangePage}
 									targetCompany={this.state.targetCompany}
 									jobSeeker={this.state.jobSeeker}
+									appliedJobs={this.state.appliedJobs}
 								/>
 							)}
 						/>
