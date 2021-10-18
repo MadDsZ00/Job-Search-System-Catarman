@@ -9,7 +9,7 @@ export class Contact extends Component {
 					<button>Back</button>
 				</Link>
 
-				<div> Contact Us</div>
+				<div> Contact Us by Messaging me!</div>
 			</>
 		);
 	}
