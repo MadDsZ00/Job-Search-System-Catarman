@@ -48,7 +48,7 @@ export class Menu extends Component {
 				<Navbar activePage='menu' />
 				<Gap />
 
-				<h1>Menu Page</h1>
+				<h1>Menu Page Ralf's Commit</h1>
 
 				<div className='menu-content-panel'>
 					<div className='menu-main-panel'>
