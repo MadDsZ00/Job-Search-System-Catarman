@@ -35,10 +35,20 @@ export class Activity extends Component {
 				</div>
 				<div className='activity-main-panel'>
 					<div className='activity-main-panel-content'>
-						<h4>
-							<strong>Company Name</strong> responded on your job
-							application as <span>Designer.</span>
-						</h4>
+						{this.props.type === "job" ? (
+							<h4>
+								<strong>Company Name</strong> responded on your job
+								application as <span>Software Developer.</span>
+							</h4>
+						) : (
+							<h4>
+								<strong>Company Name</strong> is interested on hiring
+								you as{" "}
+								<span style={{ color: "#ff0040" }}>
+									Software Developer.
+								</span>
+							</h4>
+						)}
 
 						<div className='activity-main-panel-content-info'>
 							<p>5d ago</p>

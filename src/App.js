@@ -35,6 +35,7 @@ import UnknownPage from "./Account-Folder/UnknownPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
 import SearchEngine from "./SearchEngine";
+import shortid from "shortid";
 
 export class App extends Component {
 	constructor() {
@@ -389,22 +390,26 @@ export class App extends Component {
 			user: {
 				jobSeeker: [
 					{
-						lastName: "",
-						firstName: "",
-						role: "jobseeker",
+						id: "s-vn42XKp",
+						lastName: "Bantilo",
+						firstName: "Ralf Renz",
+						middleName: "Estellana",
+						role: "Job Seeker",
 						username: "ralf",
 						password: "bantilo",
-						confirmPassword: "",
+						confirmPassword: "bantilo",
 					},
 				],
 				employer: [
 					{
-						lastName: "",
-						firstName: "",
-						role: "employer",
-						username: "ralf renz",
+						id: "IvdOEl1vNj",
+						lastName: "Bantilo",
+						firstName: "Rafael",
+						middleName: "Estellana",
+						role: "Employer",
+						username: "rafael",
 						password: "bantilo",
-						confirmPassword: "",
+						confirmPassword: "bantilo",
 					},
 				],
 			},
@@ -505,7 +510,34 @@ export class App extends Component {
 		});
 	};
 
+	registerJobSeeker = async (user) => {
+		const jobSeeker = this.state.user.jobSeeker;
+		const employer = this.state.user.employer;
+		await this.setState({
+			user: {
+				jobSeeker: [...jobSeeker, user],
+				employer: [...employer],
+			},
+		});
+
+		console.log(this.state.user.jobSeeker);
+	};
+
+	registerEmployer = async (user) => {
+		const jobSeeker = this.state.user.jobSeeker;
+		const employer = this.state.user.employer;
+		await this.setState({
+			user: {
+				jobSeeker: [...jobSeeker],
+				employer: [...employer, user],
+			},
+		});
+
+		console.log(this.state.user.employer);
+	};
+
 	render() {
+		console.log(this.state.user);
 		return (
 			// <div className='app'>
 			// 	<Router>
@@ -556,7 +588,16 @@ export class App extends Component {
 								/>
 							)}
 						/>
-						<Route exact path='/signup' component={() => <SignUp />} />
+						<Route
+							exact
+							path='/signup'
+							component={() => (
+								<SignUp
+									registerJobSeeker={this.registerJobSeeker}
+									registerEmployer={this.registerEmployer}
+								/>
+							)}
+						/>
 						<Route exact path='/' component={LandingPage} />
 
 						<Route
