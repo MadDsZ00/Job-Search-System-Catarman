@@ -10,79 +10,79 @@ import Header from "../Header";
 import Modal from "../Home-Folder/Modal";
 
 export class Menu extends Component {
-	state = {
-		isModalOpen: false,
-	};
+  state = {
+    isModalOpen: false,
+  };
 
-	viewModal = () => {
-		this.setState({
-			isModalOpen: true,
-		});
-	};
+  viewModal = () => {
+    this.setState({
+      isModalOpen: true,
+    });
+  };
 
-	onCloseModal = () => {
-		this.setState({
-			isModalOpen: false,
-		});
-	};
+  onCloseModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
 
-	handleLogin = (e) => {
-		e.preventDefault();
+  handleLogin = (e) => {
+    e.preventDefault();
 
-		// this.props.handleIsLogin();
-		console.log("User has been logged out!");
-	};
+    // this.props.handleIsLogin();
+    console.log("User has been logged out!");
+  };
 
-	handleChangePage = async (page) => {
-		await this.props.handleChangePage(page);
-	};
+  handleChangePage = async (page) => {
+    await this.props.handleChangePage(page);
+  };
 
-	componentDidMount = async () => {
-		await this.handleChangePage("menu");
-	};
+  componentDidMount = async () => {
+    await this.handleChangePage("menu");
+  };
 
-	render() {
-		return (
-			<div className='menu-container'>
-				<Header jobSeeker={this.props.jobSeeker} />
-				<Navbar activePage='menu' />
-				<Gap />
+  render() {
+    return (
+      <div className="menu-container">
+        <Header jobSeeker={this.props.jobSeeker} />
+        <Navbar activePage="menu" />
+        <Gap />
 
-				<h1>Menu Page</h1>
+        <h1>Menu</h1>
 
-				<div className='menu-content-panel'>
-					<div className='menu-main-panel'>
-						<div className='accordion'>
-							<Accordion />
-							<Accordion2 />
-							<Accordion3 />
-						</div>
-					</div>
-					<div className='bottom-container'>
-						<button className='logoutButton' onClick={this.viewModal}>
-							Logout
-						</button>
+        <div className="menu-content-panel">
+          <div className="menu-main-panel">
+            <div className="accordion">
+              <Accordion />
+              <Accordion2 />
+              <Accordion3 />
+            </div>
+          </div>
+          <div className="bottom-container">
+            <button className="logoutButton" onClick={this.viewModal}>
+              Logout
+            </button>
 
-						{this.state.isModalOpen ? (
-							<Modal
-								headText='Logout Confirmation'
-								modalText='Are you sure you want to logout?'
-								confirmText='Logout'
-								closeText='Cancel'
-								close={this.onCloseModal}
-								confirm={this.handleLogin}
-								path='/login'
-							/>
-						) : (
-							""
-						)}
+            {this.state.isModalOpen ? (
+              <Modal
+                headText="Logout Confirmation"
+                modalText="Are you sure you want to logout?"
+                confirmText="Logout"
+                closeText="Cancel"
+                close={this.onCloseModal}
+                confirm={this.handleLogin}
+                path="/login"
+              />
+            ) : (
+              ""
+            )}
 
-						<Footer />
-					</div>
-				</div>
-			</div>
-		);
-	}
+            <Footer />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Menu;
