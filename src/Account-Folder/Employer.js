@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import WorkPost from "../Home-Folder/WorkPost";
-import WorkPostHeader from "../Home-Folder/WorkPostHeader";
+import WorkPost from "../JOBSEEKER/Home-Folder/WorkPost";
+import WorkPostHeader from "../JOBSEEKER/Home-Folder/WorkPostHeader";
 
 export class Employer extends Component {
 	render() {

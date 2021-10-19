@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import "./SearchEngine.css";
 import LeftArrow from "./Images/LeftArrow.png";
-import Post from "./Home-Folder/Post";
-import Feed from "./Home-Folder/Feed";
-import Gap from "./Gap";
 import { Link } from "react-router-dom";
+import Post from "./JOBSEEKER/Home-Folder/Post";
 
 export class SearchEngine extends Component {
 	constructor() {

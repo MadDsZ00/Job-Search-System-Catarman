@@ -1,14 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
+import Gap from "../../Gap";
+import { Header } from "../../Header";
+import Navbar from "../../Navbar";
+import "./Home.css";
+import Filter from "./Filter";
+import Indication from "../../Indication";
 import Feed from "./Feed";
 import Footer from "./Footer";
-import { Component } from "react";
-import Header from "../Header";
-import Navbar from "../Navbar";
-import Gap from "../Gap";
-import "./Home.css";
-import Indication from "../Indication";
-import Filter from "./Filter";
-import SearchEngine from "../SearchEngine";
 
 export class Home extends Component {
 	constructor(props) {

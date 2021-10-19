@@ -9,7 +9,7 @@ import Icon4 from "./Images/Icon4.png";
 import Icon5 from "./Images/Icon5.png";
 import Icon6 from "./Images/Icon6.png";
 import "./LandingPage.css";
-import Footer from "./Home-Folder/Footer";
+import Footer from "./JOBSEEKER/Home-Folder/Footer";
 import { Link } from "react-router-dom";
 import Auth from "./Auth";
 

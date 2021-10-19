@@ -84,8 +84,6 @@ export class Login extends Component {
 	}
 
 	render() {
-		console.log(this.props.user);
-
 		return (
 			<div className='login-container'>
 				<div className='circle'></div>

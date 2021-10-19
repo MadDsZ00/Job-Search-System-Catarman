@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CountDown from "./Home-Folder/CountDown";
+import CountDown from "./JOBSEEKER/Home-Folder/CountDown";
 
 export class Indication extends Component {
 	render() {
