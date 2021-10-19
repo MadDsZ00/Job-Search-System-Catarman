@@ -56,8 +56,6 @@ export class CompanyProfile extends Component {
 		return (
 			<div className='company-profile-container'>
 				<Link to={`/${this.props.activePage}`}>
-					{/* <Link to={this.props.prevPath}> */}
-					{/* <button>Back</button> */}
 					<div className='back-icon-container'>
 						<img
 							src={LeftArrow}

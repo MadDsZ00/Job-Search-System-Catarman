@@ -94,6 +94,7 @@ export class ApplicationForm extends Component {
 
 	componentDidMount() {
 		this.filterObject();
+		window.scrollTo(0, 0);
 	}
 
 	render() {
@@ -113,14 +114,13 @@ export class ApplicationForm extends Component {
 			);
 		});
 
-		const { jobSeeker } = this.props;
+		const { jobSeeker, activePage } = this.props;
 		const { timeStamp } = this.state.post;
 		const { post } = this.state;
 
 		return (
 			<div className='application-form-container'>
-				<Link to={`/${this.props.activePage}`}>
-					{/* <button>Back</button> */}
+				<Link to={`/${activePage}`}>
 					<div className='back-icon-container'>
 						<img
 							src={LeftArrow}
@@ -134,7 +134,7 @@ export class ApplicationForm extends Component {
 					<div className='company-img-wrapper'>
 						<img src={this.state.post.imageURL} alt='Company Picture' />
 					</div>
-					<Link to='/home/company-profile'>
+					<Link to={`/${activePage}/company-profile`}>
 						<h2>{this.state.post.companyName}</h2>
 					</Link>
 				</div>
@@ -236,6 +236,7 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "firstName");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -247,6 +248,7 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "middleName");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -258,6 +260,7 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "lastName");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -269,12 +272,17 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "homeAddress");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='status-group'>
 								<div className='field'>
 									<label>Sex: </label>
-									<select defaultValue=''>
+									<select
+										defaultValue=''
+										disabled={
+											`${activePage}` === "profile" && "disable"
+										}>
 										<option
 											disabled='disabled'
 											hidden='hidden'
@@ -290,7 +298,11 @@ export class ApplicationForm extends Component {
 								</div>
 								<div className='field'>
 									<label>Civil Status: </label>
-									<select defaultValue=''>
+									<select
+										defaultValue=''
+										disabled={
+											`${activePage}` === "profile" && "disable"
+										}>
 										<option
 											disabled='disabled'
 											hidden='hidden'
@@ -312,7 +324,10 @@ export class ApplicationForm extends Component {
 										value={jobSeeker.bMonth}
 										onChange={(e) => {
 											this.props.handleChange(e, "bMonth");
-										}}>
+										}}
+										disabled={
+											`${activePage}` === "profile" && "disable"
+										}>
 										<option disabled='disabled' hidden='hidden'>
 											Month
 										</option>
@@ -334,7 +349,10 @@ export class ApplicationForm extends Component {
 										value={jobSeeker.bDay}
 										onChange={(e) => {
 											this.props.handleChange(e, "bDay");
-										}}>
+										}}
+										disabled={
+											`${activePage}` === "profile" && "disable"
+										}>
 										<option disabled='disabled' hidden='hidden'>
 											Day
 										</option>
@@ -345,7 +363,10 @@ export class ApplicationForm extends Component {
 										value={jobSeeker.bYear}
 										onChange={(e) => {
 											this.props.handleChange(e, "bYear");
-										}}>
+										}}
+										disabled={
+											`${activePage}` === "profile" && "disable"
+										}>
 										<option disabled='disabled' hidden='hidden'>
 											Year
 										</option>
@@ -362,6 +383,7 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "contactNumber");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -373,6 +395,7 @@ export class ApplicationForm extends Component {
 									onChange={(e) => {
 										this.props.handleChange(e, "email");
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -388,6 +411,7 @@ export class ApplicationForm extends Component {
 											"educationalAttainment"
 										);
 									}}
+									disabled={`${activePage}` === "profile" && "disable"}
 								/>
 							</div>
 							<div className='field'>
@@ -395,11 +419,22 @@ export class ApplicationForm extends Component {
 								<textarea
 									placeholder='Job Experience Summary'
 									rows='5'
+									disabled={`${activePage}` === "profile" && "disable"}
+									value={jobSeeker.jobSummary}
+									onChange={(e) => {
+										this.props.handleChange(e, "jobSummary");
+									}}
 								/>
 							</div>
 							<div className='field'>
 								<label>Attach your resume here (if necessary): </label>
-								<input type='file' />
+								<input
+									type='file'
+									disabled={`${activePage}` === "profile" && "disable"}
+									onChange={(e) => {
+										this.props.handleChange(e, "resume");
+									}}
+								/>
 							</div>
 						</div>
 
@@ -407,8 +442,16 @@ export class ApplicationForm extends Component {
 							onClick={(e) => {
 								e.preventDefault();
 								this.viewModal();
-							}}>
-							Send Application
+							}}
+							disabled={`${activePage}` === "profile" && "disable"}
+							style={
+								`${activePage}` === "profile"
+									? { opacity: "0.3" }
+									: { opacity: "1" }
+							}>
+							{`${activePage}` === "profile"
+								? "Application Sent"
+								: "Send Application"}
 						</button>
 
 						{this.state.isModalOpen ? (
@@ -419,7 +462,7 @@ export class ApplicationForm extends Component {
 								closeText='Back'
 								close={this.onCloseModal}
 								confirm={this.handleSubmit}
-								path={`/${this.props.activePage}`}
+								path={`/${activePage}`}
 							/>
 						) : (
 							""

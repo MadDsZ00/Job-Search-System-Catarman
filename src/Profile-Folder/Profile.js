@@ -11,12 +11,49 @@ import "./Profile.css";
 import AppliedJob from "./AppliedJob";
 
 export class Profile extends Component {
+	state = {
+		scrollPosition: 0,
+	};
+
+	handleScroll = async () => {
+		await this.setState({
+			scrollPosition: window.pageYOffset,
+		});
+	};
+
 	handleChangePage = async (page) => {
 		await this.props.handleChangePage(page);
 	};
 
 	componentDidMount = async () => {
+		const scrollData = localStorage.getItem("profileScroll");
 		await this.handleChangePage("profile");
+		this.handleScroll();
+
+		window.addEventListener("scroll", this.listenToScroll);
+		window.scrollTo(0, scrollData);
+	};
+
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.listenToScroll);
+		this.handleScroll();
+		window.scrollTo(0, this.state.scrollPosition);
+	}
+
+	listenToScroll = () => {
+		const winScroll =
+			document.body.scrollTop || document.documentElement.scrollTop;
+
+		const height =
+			document.documentElement.scrollHeight -
+			document.documentElement.clientHeight;
+
+		const scrolled = winScroll / height;
+		this.setState({
+			scrollPosition: scrolled,
+		});
+
+		localStorage.setItem("profileScroll", window.pageYOffset);
 	};
 
 	render() {
@@ -59,7 +96,15 @@ export class Profile extends Component {
 					)}
 
 					{this.props.appliedJobs.map((appliedJob) => {
-						return <AppliedJob appliedJob={appliedJob} />;
+						return (
+							<AppliedJob
+								appliedJob={appliedJob}
+								activePage={this.props.activePage}
+								handleChangePage={this.props.handleChangePage}
+								setCompanyID={this.props.setCompanyID}
+								infos={this.props.infos}
+							/>
+						);
 					})}
 				</div>
 

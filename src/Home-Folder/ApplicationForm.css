@@ -214,6 +214,19 @@
 	text-align: center;
 }
 
+.app-form .fields .field input:disabled {
+	color: var(--main-background);
+	background-color: var(--accent2);
+}
+.app-form .fields .field select:disabled {
+	color: var(--main-background);
+	background-color: var(--accent2);
+}
+.app-form .fields .field textarea:disabled {
+	color: var(--main-background);
+	background-color: var(--accent2);
+}
+
 .app-form .fields .field textarea {
 	text-align: left;
 }
@@ -274,6 +287,11 @@
 	border-radius: 5px;
 	border: none;
 	text-align: center;
+}
+
+.birthdate-field select:disabled {
+	color: var(--main-background);
+	background-color: var(--accent2);
 }
 
 .birthdate-field label {

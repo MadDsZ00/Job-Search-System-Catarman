@@ -384,6 +384,8 @@ export class App extends Component {
 				email: "ralfrenzbantilo853@gmail.com",
 				civilStatus: "Single",
 				educationalAttainment: "College Undergraduate",
+				jobSummary: "",
+				resume: "",
 			},
 			targetCompany: "",
 			hasApplied: false,
@@ -688,6 +690,7 @@ export class App extends Component {
 									targetCompany={this.state.targetCompany}
 									jobSeeker={this.state.jobSeeker}
 									appliedJobs={this.state.appliedJobs}
+									setCompanyID={this.setCompanyID}
 								/>
 							)}
 						/>

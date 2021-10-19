@@ -16,7 +16,7 @@ export class Navbar extends Component {
 		badge: 4,
 	};
 
-	sample = () => {
+	handleScrollTop = () => {
 		this.setState({
 			numberOfClick: this.state.numberOfClick + 1,
 			badge: this.state.numberOfClick,
@@ -38,7 +38,7 @@ export class Navbar extends Component {
 		return (
 			<div className='navbar-container'>
 				<div className='navbar'>
-					<Link to='/home' onClick={this.sample}>
+					<Link to='/home' onClick={this.handleScrollTop}>
 						<img
 							src={active === "home" ? HomeIconFilled : HomeIconOutlined}
 							alt='Home Icon Filled'
