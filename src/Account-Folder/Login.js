@@ -88,7 +88,7 @@ export class Login extends Component {
 			<div className='login-container'>
 				<div className='circle'></div>
 				<Link to='/'>
-					<button className='login-btn'>Back</button>
+					<button>Back</button>
 				</Link>
 				<div className='image-container'>
 					<img

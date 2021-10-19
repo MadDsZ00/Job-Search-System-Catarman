@@ -8,6 +8,7 @@ import Icon3 from "./Images/Icon3.png";
 import Icon4 from "./Images/Icon4.png";
 import Icon5 from "./Images/Icon5.png";
 import Icon6 from "./Images/Icon6.png";
+import Logo from "./Images/Logo.png";
 import "./LandingPage.css";
 import Footer from "./JOBSEEKER/Home-Folder/Footer";
 import { Link } from "react-router-dom";
@@ -20,11 +21,7 @@ export class LandingPage extends Component {
 	render() {
 		return (
 			<div className='landing-page-container'>
-				<Link to='/login'>
-					<button className='login-btn'>Login</button>
-				</Link>
-
-				<div className='page1'>
+				{/* <div className='page1'>
 					<div className='title-holder'>
 						<h2>
 							Welcome to <strong>Job Search System</strong> in Catarman,
@@ -35,6 +32,56 @@ export class LandingPage extends Component {
 							Are you looking for a job or trying to find an applicant?
 							Don't worry, we got you covered.
 						</p>
+					</div>
+				</div> */}
+
+				<div className='page1'>
+					<div className='landing-page-upper-panel'>
+						<div className='logo-wrapper'>
+							<div className='circle1'></div>
+							<div className='circle2'></div>
+							<img src={Logo} alt='' />
+						</div>
+
+						<div className='intro-wrapper'>
+							<h3>
+								Welcome to Job Search System in Catarman, Northern Samar
+							</h3>
+							<p>
+								Where finding job and employee makes it easier than
+								ever.
+							</p>
+							<Link to='/login'>
+								<button className='login-btn'>Login</button>
+							</Link>
+						</div>
+					</div>
+
+					<div className='landing-page-lower-panel'>
+						<div className='employer-portion-wrapper'>
+							<div className='circle3'></div>
+							<div className='employer-portion-text'>
+								<h3>Employer Portion</h3>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit.
+								</p>
+							</div>
+
+							<img src={Icon1} alt='' />
+						</div>
+
+						<div className='job-seeker-portion-wrapper'>
+							<div className='circle4'></div>
+							<img src={Icon2} alt='' />
+							<div className='job-seeker-portion-text'>
+								<h3>Job Seeker Portion</h3>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing
+									elit.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 

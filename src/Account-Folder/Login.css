@@ -9,9 +9,30 @@
 	/* overflow: hidden; */
 	margin-bottom: 100px;
 }
-.login-container a .login-btn {
+.login-container a button {
+	z-index: 99;
+	width: 100px;
 	top: 0;
 	left: 0;
+	position: absolute;
+	color: var(--accent-main);
+	border-radius: 50px;
+	padding: 5px 20px;
+	font-weight: bold;
+	cursor: pointer;
+	font-weight: 600;
+	box-shadow: 1px 1px 4px #030303bd;
+
+	border: solid 3px transparent;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0)
+		),
+		linear-gradient(-20deg, var(--light-blue), var(--dark-blue));
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	box-shadow: 2px 1000px 1px var(--dark-secondary) inset;
+	transition: 0.25s;
 }
 
 .form-login {
