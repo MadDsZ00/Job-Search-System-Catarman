@@ -1,72 +1,175 @@
+:root {
+	--main-background2: #121212;
+	--main-background22: #131313;
+	--nav-background: #242526;
+	--dark-primary: #1c1c1c;
+	--dark-secondary: #2d2d2d;
+	--accent-main: white;
+	--accent1: #e4e4e4;
+	--accent2: #949494;
+	--border1: #4d4d4d;
+	--light-blue: #00b2ff;
+	--dark-blue: #006aff;
+	--orange: #ff7b00;
+	--reddish: #ff004c;
+}
+
 .login-container {
 	text-align: center;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	background: var(--main-background);
+	/* justify-content: space-between; */
+	background: var(--main-background22);
 	position: relative;
-	/* overflow: hidden; */
-	margin-bottom: 100px;
 }
-.login-container a button {
-	z-index: 99;
-	width: 100px;
-	top: 0;
-	left: 0;
-	position: absolute;
+
+.login-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--dark-secondary);
+	height: 60px;
+	padding: 0 10px;
+}
+
+.login-nav a {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.login-nav a img {
+	height: 40px;
+}
+
+.login-image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-image-container img {
+	height: 70px;
+}
+
+.login-content {
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.login-header-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.login-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login-header .img-login-header img {
+	height: 180px;
+}
+
+.select-login-header {
+	position: relative;
+	top: -20px;
+}
+
+.select-login-header select,
+.select-login-header h3 {
+	background-color: var(--main-background22);
+	outline: none;
 	color: var(--accent-main);
-	border-radius: 50px;
-	padding: 5px 20px;
-	font-weight: bold;
-	cursor: pointer;
 	font-weight: 600;
-	box-shadow: 1px 1px 4px #030303bd;
-
-	border: solid 3px transparent;
-	background-image: linear-gradient(
-			rgba(255, 255, 255, 0),
-			rgba(255, 255, 255, 0)
-		),
-		linear-gradient(-20deg, var(--light-blue), var(--dark-blue));
-	background-origin: border-box;
-	background-clip: content-box, border-box;
-	box-shadow: 2px 1000px 1px var(--dark-secondary) inset;
-	transition: 0.25s;
+	font-size: 15px;
+	border: none;
+	margin: 0;
+	padding: 5px;
 }
-
 .form-login {
 	width: 80%;
 	margin: 0 auto;
+	border: 1px solid var(--border1);
+	border-radius: 10px;
+	padding: 10px 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.circle-blue,
+.circle-red {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border-radius: 200px;
+	filter: blur(30px);
+}
+
+.circle-blue {
+	background: linear-gradient(100deg, var(--light-blue), var(--dark-blue));
+	bottom: -130px;
+	left: -130px;
+}
+
+.circle-red {
+	background: linear-gradient(120deg, var(--orange), var(--reddish));
+	top: -130px;
+	right: -130px;
 }
 
 .login-form {
 	display: flex;
 	flex-direction: column;
 	margin: 10px 0;
+	position: relative;
 }
 
-.login-form label {
-	text-align: left;
-	font-size: 13px;
+.input-field {
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
 }
 
-.login-form input,
-.login-form .password-field input {
+.login-form-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-form-icon img {
+	height: 20px;
+	position: absolute;
+	left: 10px;
+	top: 7px;
+}
+
+.login-form-icon .password-icon {
+	height: 17px;
+	left: 12px;
+}
+
+.login-form .input-field input,
+.login-form .input-field select {
 	outline: none;
 	border: 1px solid transparent;
 	font-size: 13px;
-	padding: 5px 40px 5px 30px;
+	padding: 5px 40px;
 	border-radius: 5px;
 	font-weight: 500;
 	text-align: center;
-	background-color: var(--dark-primary);
+	background-color: var(--dark-secondary);
 	color: white;
 	transition: 0.1s linear;
 	width: 100%;
+	margin-bottom: 5px;
 }
 
-.login-form input:focus {
+.login-form .input-field input:focus {
 	border: 1px solid steelblue;
 }
 
@@ -91,8 +194,7 @@
 	cursor: pointer;
 	transition: 0.25s;
 	font-weight: 600;
-	width: 100%;
-	margin: 10px 0;
+	width: 80%;
 
 	border: solid 3px transparent;
 	background-image: linear-gradient(
@@ -102,7 +204,7 @@
 		linear-gradient(-20deg, var(--light-blue), var(--dark-blue));
 	background-origin: border-box;
 	background-clip: content-box, border-box;
-	box-shadow: 2px 1000px 1px var(--main-background) inset;
+	box-shadow: 2px 1000px 1px var(--main-background2) inset;
 }
 
 .form-login button:hover {
@@ -110,12 +212,13 @@
 	color: white;
 }
 
-.form-login p {
+.login-content p {
 	color: grey;
 	font-size: 12px;
+	margin-top: 10px;
 }
 
-.form-login p a {
+.login-content p a {
 	color: var(--light-blue);
 	cursor: pointer;
 }
@@ -178,25 +281,65 @@
 	font-size: 13px;
 }
 
-/* background styles */
+.dual-button {
+	display: flex;
+	width: 80%;
+	margin: 0 auto;
+}
 
-/* .circle,
-.signup-circle {
-	width: 100%;
-	border-radius: 100px;
-	height: 500px;
-	background-color: #006aff;
-	position: absolute;
-	top: 290px;
-	z-index: 1;
+.dual-button .dual-button-back {
+	margin-right: 3px;
+	border: solid 3px transparent;
 	background-image: linear-gradient(
 			rgba(255, 255, 255, 0),
 			rgba(255, 255, 255, 0)
 		),
-		linear-gradient(-20deg, #00b2ff, #006aff);
-} */
+		linear-gradient(20deg, var(--light-blue), var(--dark-blue));
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	box-shadow: 2px 1000px 1px var(--main-background2) inset;
+}
+.dual-button .dual-sign-in {
+	margin-left: 3px;
+	border: solid 3px transparent;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0)
+		),
+		linear-gradient(-20deg, var(--orange), var(--reddish));
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	box-shadow: 2px 1000px 1px var(--main-background2) inset;
+}
 
-/* .signup-circle {
-	top: 100px;
-	height: 700px;
-} */
+.dual-button .dual-button-back:hover {
+	box-shadow: none;
+}
+.dual-button .dual-sign-in:hover {
+	box-shadow: none;
+}
+
+/* background styles */
+.steps {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.step1,
+.step2 {
+	width: 7px;
+	height: 7px;
+	border-radius: 20px;
+}
+
+.step1 {
+	background-color: var(--light-blue);
+	margin: 0 3px;
+}
+
+.step2 {
+	background-color: var(--border1);
+	margin: 0 3px;
+}

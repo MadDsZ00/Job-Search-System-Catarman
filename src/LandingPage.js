@@ -13,6 +13,7 @@ import "./LandingPage.css";
 import Footer from "./JOBSEEKER/Home-Folder/Footer";
 import { Link } from "react-router-dom";
 import Auth from "./Auth";
+import Illustration1 from "./Images/Illustration1.svg";
 
 export class LandingPage extends Component {
 	componentDidMount() {
@@ -21,65 +22,31 @@ export class LandingPage extends Component {
 	render() {
 		return (
 			<div className='landing-page-container'>
-				{/* <div className='page1'>
-					<div className='title-holder'>
-						<h2>
-							Welcome to <strong>Job Search System</strong> in Catarman,
-							Northern Samar
-						</h2>
-						<img src={FormBanner} alt='No Title Yet' />
-						<p>
-							Are you looking for a job or trying to find an applicant?
-							Don't worry, we got you covered.
-						</p>
+				<div className='home-page'>
+					<div className='home-page-nav'>
+						<img src={Logo} alt='Job Search System Logo' />
 					</div>
-				</div> */}
-
-				<div className='page1'>
-					<div className='landing-page-upper-panel'>
-						<div className='logo-wrapper'>
-							<div className='circle1'></div>
-							<div className='circle2'></div>
-							<img src={Logo} alt='' />
+					<div className='home-page-content'>
+						<div className='page-logo-container'>
+							<div className='logo-background'></div>
+							<img src={Illustration1} alt='Illustration' />
 						</div>
 
-						<div className='intro-wrapper'>
-							<h3>
-								Welcome to Job Search System in Catarman, Northern Samar
-							</h3>
-							<p>
-								Where finding job and employee makes it easier than
-								ever.
-							</p>
-							<Link to='/login'>
-								<button className='login-btn'>Login</button>
-							</Link>
-						</div>
-					</div>
-
-					<div className='landing-page-lower-panel'>
-						<div className='employer-portion-wrapper'>
-							<div className='circle3'></div>
-							<div className='employer-portion-text'>
-								<h3>Employer Portion</h3>
+						<div className='page-text-container'>
+							<div className='text-wrapper'>
+								<h3>
+									Welcome to Job Search System in Catarman, Northern
+									Samar
+								</h3>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing
-									elit.
+									Are you looking for a job or looking for the right
+									applicant, don't worry we got you covered.
 								</p>
 							</div>
-
-							<img src={Icon1} alt='' />
-						</div>
-
-						<div className='job-seeker-portion-wrapper'>
-							<div className='circle4'></div>
-							<img src={Icon2} alt='' />
-							<div className='job-seeker-portion-text'>
-								<h3>Job Seeker Portion</h3>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing
-									elit.
-								</p>
+							<div className='login-wrapper'>
+								<Link to='/login'>
+									<button>Login</button>
+								</Link>
 							</div>
 						</div>
 					</div>

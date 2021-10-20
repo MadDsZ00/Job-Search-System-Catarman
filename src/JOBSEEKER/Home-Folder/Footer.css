@@ -14,7 +14,7 @@ footer {
 	border-top: 1px solid var(--border2);
 }
 
-h3 {
+.footer-container h3 {
 	font-size: 12px;
 	font-weight: 500;
 	color: var(--accent2);
