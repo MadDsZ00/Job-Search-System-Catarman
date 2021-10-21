@@ -21,8 +21,8 @@ export class SearchEngine extends Component {
 		localStorage.setItem("search", this.state.text);
 	};
 
-	handleScroll = () => {
-		this.setState({
+	handleScroll = async () => {
+		await this.setState({
 			scrollPosition: window.pageYOffset,
 		});
 	};
@@ -32,45 +32,36 @@ export class SearchEngine extends Component {
 	};
 
 	componentDidMount = async () => {
-		const prevScroll = localStorage.getItem("scroll");
+		const prevScroll = localStorage.getItem("searchScroll");
+		const prevSearch = localStorage.getItem("search");
+
+		await this.handleChangePage("search");
+		await this.setState({
+			text: prevSearch,
+			scrollPosition: prevScroll,
+		});
+
+		this.handleScroll();
 
 		window.addEventListener("scroll", this.listenToScroll);
-		window.scrollTo(0, this.state.scrollPosition);
-		this.handleScroll();
-		await this.handleChangePage("search");
-
-		const prevSearch = localStorage.getItem("search");
+		window.scrollTo(0, prevScroll);
 
 		if (prevSearch === null) {
 			return this.setState({
 				text: "",
 			});
 		}
-		if (!prevScroll) {
-			return this.setState({
-				scrollPosition: 0,
-			});
-		}
-
-		this.setState({
-			text: prevSearch,
-			scrollPosition: prevScroll,
-		});
-
-		// console.log("componentDidMount", this.state.scrollPosition);
 	};
 
-	componentWillUnmount = () => {
+	componentWillUnmount = async () => {
 		window.removeEventListener("scroll", this.listenToScroll);
 		this.handleScroll();
 		window.scrollTo(0, this.state.scrollPosition);
 
-		this.setState({
+		await this.setState({
 			text: this.state.text,
 			scrollPosition: this.state.scrollPosition,
 		});
-
-		// console.log("componentWillUnmount", this.state.scrollPosition);
 	};
 
 	listenToScroll = () => {
@@ -83,15 +74,18 @@ export class SearchEngine extends Component {
 
 		const scrolled = winScroll / height;
 		this.setState({
-			scrollPosition: scrolled,
+			scrollPosition: window.pageYOffset,
 		});
 
-		localStorage.setItem("scroll", this.state.scrollPosition);
+		localStorage.setItem("searchScroll", window.pageYOffset);
 	};
 
 	render() {
 		const { infos } = this.props;
-
+		if (this.state.scrollPosition != 0) {
+			localStorage.setItem("searchScroll", this.state.scrollPosition);
+			window.scrollTo(0, this.state.scrollPosition);
+		}
 		return (
 			<div className='search-container'>
 				<div className='search-panel'>
