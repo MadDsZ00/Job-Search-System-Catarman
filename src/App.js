@@ -44,6 +44,7 @@ export class App extends Component {
 			infos: [],
 			showAddTask: [],
 			isLogin: [],
+			isSignUp: [],
 			activePage: [],
 			scrollPosition: [],
 			jobSeeker: {},
@@ -462,6 +463,12 @@ export class App extends Component {
 		});
 	};
 
+	toggleSignUp = (condition) => {
+		this.setState({
+			isSignUp: condition,
+		});
+	};
+
 	handleChangePage = (page) => {
 		this.setState({
 			activePage: [page],
@@ -634,6 +641,7 @@ export class App extends Component {
 								<Login
 									handleLogin={this.handleLogin}
 									user={this.state.user}
+									toggleSignUp={this.toggleSignUp}
 								/>
 							)}
 						/>
@@ -644,6 +652,8 @@ export class App extends Component {
 								<SignUp
 									registerJobSeeker={this.registerJobSeeker}
 									registerEmployer={this.registerEmployer}
+									isSignUp={this.state.isSignUp}
+									toggleSignUp={this.toggleSignUp}
 								/>
 							)}
 						/>

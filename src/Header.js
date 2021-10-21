@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "./Images/Logo.png";
 import SearchIcon from "./Images/SearchIcon.png";
 import User from "./Images/User.png";

@@ -10,6 +10,7 @@ export class SearchEngine extends Component {
 		this.state = {
 			text: "",
 			scrollPosition: 0,
+			prevPage: "",
 		};
 	}
 
@@ -35,22 +36,37 @@ export class SearchEngine extends Component {
 		const prevScroll = localStorage.getItem("searchScroll");
 		const prevSearch = localStorage.getItem("search");
 
-		await this.handleChangePage("search");
-		await this.setState({
-			text: prevSearch,
-			scrollPosition: prevScroll,
-		});
-
-		this.handleScroll();
-
-		window.addEventListener("scroll", this.listenToScroll);
-		window.scrollTo(0, prevScroll);
-
 		if (prevSearch === null) {
-			return this.setState({
+			await this.setState({
 				text: "",
 			});
+		} else {
+			await this.setState({
+				text: prevSearch,
+			});
 		}
+		if (prevScroll === null) {
+			await this.setState({
+				scrollPosition: 0,
+			});
+		} else {
+			await this.setState({
+				scrollPosition: prevScroll,
+			});
+		}
+
+		if (this.props.activePage !== "search") {
+			this.setState({
+				prevPage: this.props.activePage,
+			});
+			localStorage.setItem("previousPage", this.props.activePage);
+		}
+
+		await this.handleChangePage("search");
+
+		this.handleScroll();
+		window.addEventListener("scroll", this.listenToScroll);
+		window.scrollTo(0, prevScroll);
 	};
 
 	componentWillUnmount = async () => {
@@ -81,16 +97,18 @@ export class SearchEngine extends Component {
 	};
 
 	render() {
+		const previousPage = localStorage.getItem("previousPage");
 		const { infos } = this.props;
-		if (this.state.scrollPosition != 0) {
+		if (this.state.scrollPosition !== 0) {
 			localStorage.setItem("searchScroll", this.state.scrollPosition);
 			window.scrollTo(0, this.state.scrollPosition);
 		}
+
 		return (
 			<div className='search-container'>
 				<div className='search-panel'>
 					<Link
-						to='/home'
+						to={`/${previousPage}`}
 						onClick={() => {
 							localStorage.clear();
 						}}>

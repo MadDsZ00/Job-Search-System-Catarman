@@ -13,6 +13,9 @@ export class Activities extends Component {
 						padding: "0",
 						margin: "0 0 10px 10px",
 						textAlign: "left",
+						fontSize: "13px",
+						fontWeight: "600",
+						color: "#949494",
 					}}>
 					Notifications
 				</h3>

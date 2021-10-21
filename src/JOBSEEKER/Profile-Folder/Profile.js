@@ -82,7 +82,7 @@ export class Profile extends Component {
 				<div className='applied-jobs-container'>
 					<h3
 						style={{
-							fontSize: "12px",
+							fontSize: "13px",
 							color: "#949494",
 							fontWeight: "600",
 							marginLeft: "10px",

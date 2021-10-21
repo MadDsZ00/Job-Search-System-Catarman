@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import Logo from "../Images/Logo.png";
 import shortid from "shortid";
 import AddUser from "../Images/AddUser.png";
-import UsernameIcon from "../Images/UsernameIcon.png";
-import PasswordIcon from "../Images/PasswordIcon.png";
 import Eye from "../Images/Eye.png";
 import LeftArrow from "../Images/LeftArrow.png";
 import "./Login.css";
-import Modal from "../JOBSEEKER/Home-Folder/Modal";
+import AuthIndication from "./AuthIndication";
 
 export class SignUp extends Component {
 	state = {
@@ -23,6 +21,8 @@ export class SignUp extends Component {
 		step: 1,
 		isPasswordVisible: false,
 		isModalOpen: false,
+		isValid: true,
+		isPasswordMatch: true,
 	};
 
 	viewModal = (e) => {
@@ -41,10 +41,12 @@ export class SignUp extends Component {
 	handleChange = async (event, fieldName) => {
 		await this.setState({
 			[fieldName]: event.target.value,
+			isValid: true,
+			isPasswordMatch: true,
 		});
 	};
 
-	handleSignUp = () => {
+	handleSignUp = async () => {
 		const user = this.state;
 
 		const signUpUser = {
@@ -69,10 +71,22 @@ export class SignUp extends Component {
 			user.confirmPassword === "" ||
 			user.sex === ""
 		) {
-			alert("Error Submitting Entries");
+			await this.setState({
+				isValid: false,
+			});
 		} else {
 			if (user.role === "Job Seeker") {
-				this.props.registerJobSeeker(signUpUser);
+				if (user.password !== user.confirmPassword) {
+					await this.setState({
+						isPasswordMatch: false,
+					});
+				} else {
+					await this.setState({
+						isValid: true,
+					});
+					this.props.toggleSignUp(true);
+					this.props.registerJobSeeker(signUpUser);
+				}
 			} else if (user.role === "Employer") {
 				this.props.registerEmployer(signUpUser);
 			}
@@ -81,10 +95,22 @@ export class SignUp extends Component {
 
 	handleSubmitNext = async (e) => {
 		e.preventDefault();
-
-		await this.setState({
-			step: 2,
-		});
+		const user = this.state;
+		if (
+			user.firstName === "" ||
+			user.lastName === "" ||
+			user.middleName === "" ||
+			user.role === ""
+		) {
+			this.setState({
+				isValid: false,
+			});
+		} else {
+			await this.setState({
+				step: 2,
+				isValid: true,
+			});
+		}
 	};
 
 	handleSubmitPrev = async (e) => {
@@ -92,10 +118,25 @@ export class SignUp extends Component {
 
 		await this.setState({
 			step: 1,
+			isValid: true,
 		});
 	};
 
+	toggleSignUpFalse = () => {
+		this.props.toggleSignUp(false);
+	};
+
 	render() {
+		const {
+			firstName,
+			middleName,
+			lastName,
+			role,
+			sex,
+			username,
+			password,
+			confirmPassword,
+		} = this.state;
 		return (
 			<div className='login-container'>
 				<div className='login-nav'>
@@ -116,6 +157,26 @@ export class SignUp extends Component {
 							<div className='select-login-header'>
 								<h3>Register User</h3>
 							</div>
+							{this.state.isValid === false && (
+								<div className='error-container'>
+									<div className='error-wrapper'>
+										<p>Fill in all the fields please...</p>
+									</div>
+								</div>
+							)}
+							{this.state.isPasswordMatch === false && (
+								<div className='error-container'>
+									<div className='error-wrapper'>
+										<p>Password Confirmation Error!</p>
+									</div>
+								</div>
+							)}
+							{this.props.isSignUp === true && (
+								<AuthIndication
+									method={this.toggleSignUpFalse}
+									delay={5}
+								/>
+							)}
 						</div>
 					</div>
 
@@ -134,6 +195,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "firstName");
 										}}
+										value={firstName}
 									/>
 								</div>
 							</div>
@@ -145,6 +207,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "middleName");
 										}}
+										value={middleName}
 									/>
 								</div>
 							</div>
@@ -156,6 +219,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "lastName");
 										}}
+										value={lastName}
 									/>
 								</div>
 							</div>
@@ -163,14 +227,14 @@ export class SignUp extends Component {
 								<div className='input-field'>
 									<select
 										name='Role'
-										defaultValue='Job Seeker'
 										onChange={(e) => {
 											this.handleChange(e, "role");
-										}}>
+										}}
+										value={role}>
 										<option
 											disabled='disabled'
 											hidden='hidden'
-											value='Job Seeker'>
+											value=''>
 											Select Role
 										</option>
 										<option value='Job Seeker'>Job Seeker</option>
@@ -186,9 +250,7 @@ export class SignUp extends Component {
 					)}
 
 					{this.state.step === 2 && (
-						<form
-							className='form-login'
-							onSubmit={(e) => this.viewModal(e)}>
+						<div className='form-login'>
 							<div className='circle-blue' />
 							<div className='circle-red' />
 
@@ -201,6 +263,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "username");
 										}}
+										value={username}
 									/>
 								</div>
 							</div>
@@ -216,6 +279,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "password");
 										}}
+										value={password}
 									/>
 									<img
 										style={
@@ -243,6 +307,7 @@ export class SignUp extends Component {
 										onChange={(e) => {
 											this.handleChange(e, "confirmPassword");
 										}}
+										value={confirmPassword}
 									/>
 								</div>
 							</div>
@@ -250,14 +315,14 @@ export class SignUp extends Component {
 								<div className='input-field'>
 									<select
 										name='Sex'
-										defaultValue='Male'
 										onChange={(e) => {
 											this.handleChange(e, "sex");
-										}}>
+										}}
+										value={sex}>
 										<option
 											disabled='disabled'
 											hidden='hidden'
-											value='Male'>
+											value=''>
 											Select Sex
 										</option>
 										<option value='Male'>Male</option>
@@ -268,16 +333,16 @@ export class SignUp extends Component {
 							<div className='dual-button'>
 								<button
 									className='dual-button-back'
-									onSubmit={(e) => this.handleSubmitPrev(e)}>
+									onClick={(e) => this.handleSubmitPrev(e)}>
 									Back
 								</button>
 								<button
 									className='dual-sign-in'
-									onSubmit={this.viewModal}>
+									onClick={this.handleSignUp}>
 									Sign In
 								</button>
 							</div>
-						</form>
+						</div>
 					)}
 
 					<div className='steps'>
@@ -299,23 +364,16 @@ export class SignUp extends Component {
 						/>
 					</div>
 					<p>
-						Already have an account? <Link to='/login'>Login</Link>
+						Already have an account?{" "}
+						<Link
+							to='/login'
+							onClick={() => {
+								this.props.toggleSignUp(false);
+							}}>
+							Login
+						</Link>
 					</p>
 				</div>
-
-				{this.state.isModalOpen ? (
-					<Modal
-						headText='Successfully Registered'
-						modalText='Do you want to get Redirected to Login Page?'
-						confirmText='Continue'
-						closeText='Cancel'
-						close={this.onCloseModal}
-						confirm={this.handleSignUp}
-						path='/login'
-					/>
-				) : (
-					""
-				)}
 			</div>
 		);
 	}

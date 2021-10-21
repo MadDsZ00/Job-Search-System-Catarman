@@ -6,7 +6,7 @@ export class Filter extends Component {
 		return (
 			<div className='filter-container'>
 				<div className='filter f1'>
-					<h4>Filter Posts:</h4>
+					<h4>Filter:</h4>
 					<select
 						name='Filter Posts'
 						defaultValue='Job Suggestions'
@@ -14,7 +14,7 @@ export class Filter extends Component {
 						<option disabled='disabled' hidden='hidden' value=''>
 							Filter Posts
 						</option>
-						<option value='Latest Jobs Posts'>Latest Jobs Posts</option>
+						<option value='Most Recent'>Most Recent</option>
 						<option value='Old Posts First'>Old Posts First</option>
 						<option value='Job Suggestions'>Job Suggestions</option>
 					</select>
@@ -32,6 +32,9 @@ export class Filter extends Component {
 						<option value='Brgy.Cawayan'>Brgy.Cawayan</option>
 						<option value='UEP'>UEP</option>
 						<option value='Brgy. Dalakit'>Brgy. Dalakit</option>
+						<option value='Brgy. Dalakit'>Brgy. Narra</option>
+						<option value='Brgy. Dalakit'>Brgy. Bangkerohan</option>
+						<option value='Brgy. Dalakit'>Brgy. Talisay</option>
 						<option value='All over Catarman'>All over Catarman</option>
 					</select>
 				</div>

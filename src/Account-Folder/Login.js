@@ -8,6 +8,7 @@ import ProfileIconFilledGray from "../Images/ProfileIconFilledGray.png";
 import UsernameIcon from "../Images/UsernameIcon.png";
 import PasswordIcon from "../Images/PasswordIcon.png";
 import LeftArrow from "../Images/LeftArrow.png";
+import WelcomeWindow from "./WelcomeWindow";
 
 export class Login extends Component {
 	constructor() {
@@ -24,16 +25,6 @@ export class Login extends Component {
 		};
 	}
 
-	push = (path) => {
-		this.props.history.push(path);
-
-		// Auth.login(() => {
-		// 	this.props.history.push(path);
-		// });
-
-		Auth.setAuthenticated();
-	};
-
 	handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -41,9 +32,6 @@ export class Login extends Component {
 		const passwordInput = this.state.passwordInput;
 
 		const { user } = this.props;
-		// const [jobSeeker] = user.jobSeeker;
-		// const [employer] = user.employer;
-
 		const role = this.state.role;
 
 		if (role === "Job Seeker") {
@@ -52,8 +40,11 @@ export class Login extends Component {
 					js.username === usernameInput &&
 					js.password === passwordInput
 				) {
-					alert(`Welcome back ${js.firstName} ${js.lastName}`);
-					this.push("/home");
+					this.setIsLoggedin();
+				} else {
+					this.setState({
+						isValid: false,
+					});
 				}
 			});
 		} else if (role === "Employer") {
@@ -77,9 +68,15 @@ export class Login extends Component {
 		});
 	};
 
-	setIsLoggedin = () => {
-		this.setState({
+	setIsLoggedin = async () => {
+		await this.setState({
 			isLoggedin: true,
+		});
+	};
+
+	setNotLoggedin = () => {
+		this.setState({
+			isLoggedin: false,
 		});
 	};
 
@@ -90,6 +87,9 @@ export class Login extends Component {
 	render() {
 		return (
 			<div className='login-container'>
+				{this.state.isLoggedin === true && (
+					<WelcomeWindow method={this.setNotLoggedin} delay={10} />
+				)}
 				<div className='login-nav'>
 					<Link to='/'>
 						<img src={LeftArrow} alt='Go Back' />
@@ -121,22 +121,14 @@ export class Login extends Component {
 									<option value='Employer'>Employer</option>
 								</select>
 							</div>
+							{this.state.isValid === false && (
+								<div className='error-container'>
+									<div className='error-wrapper'>
+										<p>User not found!</p>
+									</div>
+								</div>
+							)}
 						</div>
-						{this.state.isValid ? (
-							""
-						) : (
-							<div
-								className='error-message'
-								onClick={() => {
-									this.setState({
-										isValid: true,
-									});
-								}}>
-								<h4>
-									{this.state.errorMessage} {this.state.count}
-								</h4>
-							</div>
-						)}
 					</div>
 
 					<form
@@ -156,6 +148,7 @@ export class Login extends Component {
 									onChange={(e) => {
 										this.setState({
 											usernameInput: e.target.value,
+											isValid: true,
 										});
 									}}
 								/>
@@ -178,6 +171,7 @@ export class Login extends Component {
 									onChange={(e) => {
 										this.setState({
 											passwordInput: e.target.value,
+											isValid: true,
 										});
 									}}
 								/>
