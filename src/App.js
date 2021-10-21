@@ -630,7 +630,7 @@ export class App extends Component {
 						<Route
 							exact
 							path='/login'
-							render={() => (
+							component={() => (
 								<Login
 									handleLogin={this.handleLogin}
 									user={this.state.user}

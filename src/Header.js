@@ -4,23 +4,11 @@ import Logo from "./Images/Logo.png";
 import SearchIcon from "./Images/SearchIcon.png";
 import User from "./Images/User.png";
 import "./Header.css";
-import SearchEngine from "./SearchEngine";
 
 export class Header extends Component {
-	state = {
-		text: "",
-	};
-
-	setText = (e) => {
-		this.setState({
-			text: e,
-		});
-	};
-
-	gotoSearch = () => {
-		this.props.history.push("/search");
-	};
-
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		let { firstName } = this.props.jobSeeker;
 		let { lastName } = this.props.jobSeeker;
@@ -30,20 +18,16 @@ export class Header extends Component {
 				<div className='header-left'>
 					<img src={Logo} alt='Logo' className='logo-image' />
 
-					<form className='search-bar' onClick={this.gotoSearch}>
-						<input
-							type='text'
-							placeholder='Search here'
-							onChange={(e) => {
-								this.setText(e.target.value);
-							}}
-						/>
-						<img
-							src={SearchIcon}
-							alt='Search'
-							className='search-icon-image'
-						/>
-					</form>
+					<Link to='/search'>
+						<form className='search-bar'>
+							<input type='text' placeholder='Search here' />
+							<img
+								src={SearchIcon}
+								alt='Search'
+								className='search-icon-image'
+							/>
+						</form>
+					</Link>
 				</div>
 
 				<div className='profile-holder'>
@@ -59,4 +43,4 @@ export class Header extends Component {
 	}
 }
 
-export default withRouter(Header);
+export default Header;

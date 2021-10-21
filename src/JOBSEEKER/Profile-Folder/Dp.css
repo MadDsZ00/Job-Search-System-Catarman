@@ -17,6 +17,12 @@
 	position: relative;
 }
 
+.profile-container h2 {
+	color: var(--accent-main);
+	font-size: 15px;
+	font-weight: 600;
+}
+
 .dp {
 	display: flex;
 	flex-direction: column;
@@ -84,7 +90,8 @@
 
 .file-picker h3 {
 	color: white;
-	font-size: 15px;
+	font-size: 13px;
+	font-weight: 500;
 	background-color: #212121;
 	margin-bottom: 10px;
 }
@@ -202,6 +209,8 @@
 
 .active-status-container h3 {
 	padding: 0 4px;
+	font-size: 13px;
+	font-weight: 500;
 }
 .switch {
 	border: 1px solid var(--border1);

@@ -30,6 +30,11 @@ header {
 	justify-content: space-between;
 }
 
+.header-left a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .logo-image {
 	height: 60px;
 	pointer-events: none;
@@ -79,6 +84,10 @@ header {
 
 .profile-name {
 	display: none;
+	font-size: 13px;
+	color: var(--accent2);
+	margin-right: 10px;
+	font-weight: 600;
 }
 
 .profile-holder {
