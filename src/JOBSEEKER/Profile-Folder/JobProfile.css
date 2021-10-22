@@ -49,16 +49,17 @@
 }
 
 .job-profile-container label {
-	font-size: 12px;
+	font-size: 13px;
 	color: var(--accent2);
 }
 
 .job-profile-container input,
+.profession-info .field input,
 .job-profile-container select {
 	outline: none;
 	border: none;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 600;
 	padding: 5px 5px;
 	color: rgb(24, 24, 24);
@@ -70,11 +71,10 @@
 }
 
 .job-profile-container textarea {
-	background-color: #1d1d1d;
 	border-radius: 5px;
 	width: 100%;
 	height: 100px;
-	color: rgb(24, 24, 24);
+	color: var(--main-background);
 	outline: none;
 	border: none;
 	padding: 5px 5px;
@@ -86,7 +86,7 @@
 }
 
 .save-update {
-	width: 90%;
+	width: 95%;
 	margin: 10px auto;
 }
 
@@ -122,10 +122,10 @@
 	display: flex;
 	flex-direction: column;
 	padding: 0 20px;
-	width: 90%;
+	width: 95%;
 	border-radius: 10px;
 	border: 1px solid var(--border1);
-	margin: 0 auto;
+	margin: 10px auto;
 	background-color: var(--dark-secondary);
 }
 
@@ -155,7 +155,7 @@
 /* ---------- */
 
 .profession-info {
-	width: 90%;
+	width: 95%;
 	border-radius: 10px;
 	border: 1px solid var(--border1);
 	margin: 10px auto;
@@ -170,6 +170,19 @@
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 10px;
+}
+
+.profession-info .field textarea {
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 600;
+	padding: 5px 5px;
+	color: var(--main-background);
+	border-bottom: 1px solid var(--border1);
+	box-shadow: 1px 1px 4px black;
+	background-color: var(--accent1);
 }
 
 @media only screen and (max-width: 700px) {

@@ -53,7 +53,7 @@ export class Home extends Component {
 
 				{this.props.hasApplied === true && (
 					<Indication
-						backgroundcolor='green'
+						type='primary'
 						text='Your job application has been sent'
 						method={this.closeHasApplied}
 						delay={5}
@@ -62,7 +62,7 @@ export class Home extends Component {
 
 				{this.props.isDeleted === true && (
 					<Indication
-						backgroundcolor='orange'
+						type='secondary'
 						text='Post has been deleted!'
 						method={this.closeDeleteState}
 						delay={3}

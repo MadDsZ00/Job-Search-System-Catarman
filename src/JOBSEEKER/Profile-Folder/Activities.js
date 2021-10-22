@@ -12,7 +12,7 @@ export class Activities extends Component {
 					style={{
 						padding: "0",
 						margin: "0 0 10px 10px",
-						textAlign: "left",
+						textAlign: "center",
 						fontSize: "13px",
 						fontWeight: "600",
 						color: "#949494",

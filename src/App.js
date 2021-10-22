@@ -15,7 +15,7 @@ import Employer9 from "./Images/Employer9.jpg";
 import Employer10 from "./Images/Employer10.jpg";
 import Employer11 from "./Images/Employer11.jpg";
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./JOBSEEKER/Menu-Folder/OutsideLinks/About";
 import Contact from "./JOBSEEKER/Menu-Folder/OutsideLinks/Contact";
 import Help from "./JOBSEEKER/Menu-Folder/OutsideLinks/Help";
@@ -26,16 +26,8 @@ import ApplicationForm from "./JOBSEEKER/Home-Folder/ApplicationForm";
 import Login from "./Account-Folder/Login";
 import SignUp from "./Account-Folder/SignUp";
 import LandingPage from "./LandingPage";
-import JobSeeker from "./Account-Folder/JobSeeker";
-import Employer from "./Account-Folder/Employer";
-import Route1 from "./Account-Folder/Route1";
-import Route2 from "./Account-Folder/Route2";
-import Route3 from "./Account-Folder/Route3";
 import UnknownPage from "./Account-Folder/UnknownPage";
-import ProtectedRoute from "./ProtectedRoute";
-import PrivateRoute from "./PrivateRoute";
 import SearchEngine from "./SearchEngine";
-import shortid from "shortid";
 import User from "./Images/User.png";
 
 export class App extends Component {

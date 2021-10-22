@@ -6,7 +6,11 @@ export class Indication extends Component {
 		return (
 			<div
 				className='indication'
-				style={{ backgroundColor: `${this.props.backgroundcolor}` }}>
+				style={
+					this.props.type === "primary"
+						? { background: "linear-gradient(20deg, #00b2ff, #006aff)" }
+						: { background: "linear-gradient(20deg, #ff7b00, #ff004c)" }
+				}>
 				<div>
 					{this.props.text}
 					{

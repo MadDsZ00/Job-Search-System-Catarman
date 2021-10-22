@@ -89,7 +89,17 @@ export class SignUp extends Component {
 					this.props.registerJobSeeker(signUpUser);
 				}
 			} else if (user.role === "Employer") {
-				this.props.registerEmployer(signUpUser);
+				if (user.password !== user.confirmPassword) {
+					await this.setState({
+						isPasswordMatch: false,
+					});
+				} else {
+					await this.setState({
+						isValid: true,
+					});
+					this.props.toggleSignUp(true);
+					this.props.registerEmployer(signUpUser);
+				}
 			}
 		}
 	};

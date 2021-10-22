@@ -40,7 +40,6 @@ export class JobVacancyFormPart1 extends Component {
 
 	render() {
 		const { values, handleChange } = this.props;
-		console.log("run");
 		return (
 			<div className='text-fields'>
 				{this.state.isNotValid === false && (

@@ -15,7 +15,7 @@
 }
 
 .application-form-container {
-	padding: 10px;
+	padding: 10px 0;
 	background-color: var(--dark-primary);
 }
 
@@ -33,9 +33,7 @@
 .preview-container {
 	background-color: var(--dark-secondary);
 	padding-bottom: 5px;
-	border-radius: 5px;
 	box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.664);
-	width: 99%;
 	margin: 0 auto;
 	margin-top: 10px;
 	display: flex;
@@ -90,7 +88,7 @@
 }
 
 .apply-detail p {
-	font-size: 12px;
+	font-size: 13px;
 	flex: 1.4;
 	text-align: right;
 	margin-right: 8px;
@@ -98,7 +96,7 @@
 }
 
 .apply-detail h4 {
-	font-size: 12px;
+	font-size: 13px;
 	flex: 2;
 	color: var(--accent1);
 	font-weight: 600;
@@ -127,7 +125,7 @@
 }
 
 .job-qualification-portion p {
-	font-size: 12px;
+	font-size: 13px;
 	color: var(--accent1);
 }
 
@@ -198,7 +196,7 @@
 }
 
 .app-form .fields .field label {
-	font-size: 12px;
+	font-size: 13px;
 	color: rgba(255, 255, 255, 0.7);
 }
 
@@ -207,7 +205,7 @@
 .app-form .fields .field textarea {
 	padding: 3px 6px;
 	outline: none;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 500;
 	border-radius: 5px;
 	border: none;
@@ -282,7 +280,7 @@
 .birthdate-field select {
 	padding: 3px 6px;
 	outline: none;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 500;
 	border-radius: 5px;
 	border: none;
@@ -295,7 +293,7 @@
 }
 
 .birthdate-field label {
-	font-size: 12px;
+	font-size: 13px;
 	display: flex;
 	justify-content: center;
 	color: rgba(255, 255, 255, 0.7);

@@ -11,7 +11,6 @@ export class SearchEngine extends Component {
 		this.state = {
 			text: "",
 			scrollPosition: 0,
-			prevPage: "",
 		};
 	}
 
@@ -21,6 +20,7 @@ export class SearchEngine extends Component {
 		});
 
 		localStorage.setItem("search", this.state.text);
+		console.log("--------------");
 	};
 
 	handleScroll = async () => {
@@ -56,10 +56,13 @@ export class SearchEngine extends Component {
 			});
 		}
 
-		if (this.props.activePage !== "search") {
-			this.setState({
-				prevPage: this.props.activePage,
-			});
+		if (`${this.props.activePage}` !== "search") {
+			// if (this.state.prevPage === "search" || this.state.prevPage === null) {
+			// 	localStorage.setItem("previousPage", this.state.prevPage);
+			// 	console.log("Run If", this.state.prevPage);
+			// } else {
+			// 	console.log("Run Else", this.state.prevPage);
+			// }
 			localStorage.setItem("previousPage", this.props.activePage);
 		}
 
@@ -82,14 +85,6 @@ export class SearchEngine extends Component {
 	};
 
 	listenToScroll = () => {
-		const winScroll =
-			document.body.scrollTop || document.documentElement.scrollTop;
-
-		const height =
-			document.documentElement.scrollHeight -
-			document.documentElement.clientHeight;
-
-		const scrolled = winScroll / height;
 		this.setState({
 			scrollPosition: window.pageYOffset,
 		});
@@ -159,6 +154,7 @@ export class SearchEngine extends Component {
 									.toLowerCase()
 									.includes(`${this.state.text}`.toLowerCase())
 							) {
+								console.log("count");
 								return (
 									<div className='feed-container' key={info.id}>
 										<Post

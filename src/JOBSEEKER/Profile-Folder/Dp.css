@@ -211,6 +211,7 @@
 	padding: 0 4px;
 	font-size: 13px;
 	font-weight: 500;
+	color: var(--accent2);
 }
 .switch {
 	border: 1px solid var(--border1);

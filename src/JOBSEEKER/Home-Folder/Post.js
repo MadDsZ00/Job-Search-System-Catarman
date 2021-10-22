@@ -66,7 +66,7 @@ export class Post extends Component {
 							</Link>
 
 							<div className='basic-info'>
-								<Link to='/home/company-profile'>
+								<Link to={`/${this.props.activePage}/company-profile`}>
 									<h2
 										onClick={() => {
 											this.props.setCompanyID(info.id);

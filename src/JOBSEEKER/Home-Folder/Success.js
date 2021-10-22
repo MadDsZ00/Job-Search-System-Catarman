@@ -10,7 +10,7 @@ export class Success extends Component {
 	render() {
 		return (
 			<Indication
-				backgroundcolor='blue'
+				type='primary'
 				text='Job vacancy uploaded!'
 				method={this.toggleView}
 				delay={3}
