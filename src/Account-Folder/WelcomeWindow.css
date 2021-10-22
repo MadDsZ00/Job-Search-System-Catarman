@@ -19,7 +19,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background-color: #212121;
-	padding: 10px;
+	padding: 10px 20px;
 	z-index: 1000;
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px black;
@@ -31,7 +31,7 @@
 }
 
 .welcome-container .welcome-container-content img {
-	height: 100px;
+	height: 50px;
 }
 
 .welcome-container .welcome-container-content h3 {

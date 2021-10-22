@@ -23,6 +23,10 @@ export class CountDown extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.method();
+	}
+
 	render() {
 		return <div></div>;
 	}

@@ -105,6 +105,7 @@ export class Profile extends Component {
 					{this.props.appliedJobs.map((appliedJob) => {
 						return (
 							<AppliedJob
+								key={appliedJob.id}
 								appliedJob={appliedJob}
 								activePage={this.props.activePage}
 								handleChangePage={this.props.handleChangePage}

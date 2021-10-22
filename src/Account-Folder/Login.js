@@ -9,6 +9,8 @@ import UsernameIcon from "../Images/UsernameIcon.png";
 import PasswordIcon from "../Images/PasswordIcon.png";
 import LeftArrow from "../Images/LeftArrow.png";
 import WelcomeWindow from "./WelcomeWindow";
+import Loading2Blue from "../Images/Loading2Blue.gif";
+import Loading2Red from "../Images/Loading2Red.gif";
 
 export class Login extends Component {
 	constructor() {
@@ -20,12 +22,15 @@ export class Login extends Component {
 			role: "Job Seeker",
 			isPasswordVisible: false,
 			isValid: true,
-			errorMessage: "No Errors yet",
 			isLoggedin: false,
+			currentUser: {
+				firstName: "",
+				lastName: "",
+			},
 		};
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const usernameInput = this.state.usernameInput;
@@ -35,12 +40,19 @@ export class Login extends Component {
 		const role = this.state.role;
 
 		if (role === "Job Seeker") {
-			this.props.user.jobSeeker.map((js) => {
+			await this.props.user.jobSeeker.map(async (js) => {
 				if (
 					js.username === usernameInput &&
 					js.password === passwordInput
 				) {
 					this.setIsLoggedin();
+
+					await this.setState({
+						currentUser: {
+							firstName: js.firstName,
+							lastName: js.lastName,
+						},
+					});
 				} else {
 					this.setState({
 						isValid: false,
@@ -48,13 +60,23 @@ export class Login extends Component {
 				}
 			});
 		} else if (role === "Employer") {
-			this.props.user.employer.map((emp) => {
+			await this.props.user.employer.map(async (emp) => {
 				if (
 					emp.username === usernameInput &&
 					emp.password === passwordInput
 				) {
-					alert(`Welcome back ${emp.firstName} ${emp.lastName}`);
-					this.push("/home");
+					this.setIsLoggedin();
+
+					await this.setState({
+						currentUser: {
+							firstName: emp.firstName,
+							lastName: emp.lastName,
+						},
+					});
+				} else {
+					this.setState({
+						isValid: false,
+					});
 				}
 			});
 		}
@@ -63,7 +85,6 @@ export class Login extends Component {
 	setIsValidToFalse = () => {
 		this.setState({
 			isValid: false,
-			errorMessage: "Failed to login, Please try again!",
 			isLoggedin: false,
 		});
 	};
@@ -88,7 +109,16 @@ export class Login extends Component {
 		return (
 			<div className='login-container'>
 				{this.state.isLoggedin === true && (
-					<WelcomeWindow method={this.setNotLoggedin} delay={10} />
+					<WelcomeWindow
+						roleGif={
+							this.state.role === "Job Seeker"
+								? Loading2Blue
+								: Loading2Red
+						}
+						method={this.setNotLoggedin}
+						delay={3}
+						currentUser={this.state.currentUser}
+					/>
 				)}
 				<div className='login-nav'>
 					<Link to='/'>

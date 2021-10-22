@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import Loading1 from "../Images/Loading1.gif";
+import Loading2Blue from "../Images/Loading2Blue.gif";
 import CountDown from "../JOBSEEKER/Home-Folder/CountDown";
 import "./WelcomeWindow.css";
 
@@ -13,12 +13,13 @@ export class WelcomeWindow extends Component {
 		this.push("/home");
 	}
 	render() {
+		const { firstName, lastName } = this.props.currentUser;
 		return (
 			<div className='welcome-container'>
 				<div className='welcome-container-overlay'></div>
 				<div className='welcome-container-content'>
-					<img src={Loading1} alt='Loading1 gif' />
-					<h3>How's it going Ralf Renz Bantilo</h3>
+					<img src={this.props.roleGif} alt='Loading1 gif' />
+					<h3>How's it going {`${firstName} ${lastName}`}</h3>
 					<p>Initializing Components...</p>
 				</div>
 

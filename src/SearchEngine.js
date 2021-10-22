@@ -3,6 +3,7 @@ import "./SearchEngine.css";
 import LeftArrow from "./Images/LeftArrow.png";
 import { Link } from "react-router-dom";
 import Post from "./JOBSEEKER/Home-Folder/Post";
+import LoadingSearch2 from "./Images/LoadingSearch2.gif";
 
 export class SearchEngine extends Component {
 	constructor() {
@@ -180,9 +181,12 @@ export class SearchEngine extends Component {
 
 				{this.state.text === "" ? (
 					<div className='search-content'>
-						<p className='search-text'>
+						<div className='search-text'>
+							<div className='search-gif'>
+								<img src={LoadingSearch2} alt='Loading gif' />
+							</div>
 							Nothing to display, start typing...
-						</p>
+						</div>
 					</div>
 				) : (
 					""

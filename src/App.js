@@ -36,6 +36,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
 import SearchEngine from "./SearchEngine";
 import shortid from "shortid";
+import User from "./Images/User.png";
 
 export class App extends Component {
 	constructor() {
@@ -55,6 +56,7 @@ export class App extends Component {
 				jobSeeker: [],
 				employer: [],
 			},
+			userData: [],
 			appliedJobs: [],
 		};
 	}
@@ -402,6 +404,7 @@ export class App extends Component {
 						username: "ralf",
 						password: "bantilo",
 						confirmPassword: "bantilo",
+						profileImage: User,
 					},
 				],
 				employer: [
@@ -416,6 +419,30 @@ export class App extends Component {
 						confirmPassword: "bantilo",
 					},
 				],
+			},
+			currentUser: {
+				jobSeeker: [
+					{
+						id: "s-vn42XKp",
+						firstName: "Ralf Renz",
+						middleName: "Estellana",
+						lastName: "Bantilo",
+						role: "Job Seeker",
+						homeAddress:
+							"Zone 1, Brgy. Poblacion, San Roque, Northern Samar",
+						sex: "Male",
+						bMonth: 1,
+						bDay: 11,
+						bYear: 2000,
+						contactNumber: "09157275479",
+						email: "ralfrenzbantilo853@gmail.com",
+						civilStatus: "Single",
+						educationalAttainment: "College Undergraduate",
+						username: "ralf",
+						password: "bantilo",
+					},
+				],
+				employer: [],
 			},
 			appliedJobs: [],
 		});
@@ -562,14 +589,39 @@ export class App extends Component {
 	registerJobSeeker = async (user) => {
 		const jobSeeker = this.state.user.jobSeeker;
 		const employer = this.state.user.employer;
+		const currentUser = this.state.currentUser;
 		await this.setState({
 			user: {
 				jobSeeker: [...jobSeeker, user],
 				employer: [...employer],
 			},
+			currentUser: {
+				jobSeeker: [
+					...currentUser.jobSeeker,
+					{
+						id: user.id,
+						firstName: user.firstName,
+						middleName: user.middleName,
+						lastName: user.lastName,
+						role: user.role,
+						homeAddress: "",
+						sex: user.sex,
+						bMonth: 0,
+						bDay: 0,
+						bYear: 0,
+						contactNumber: "",
+						email: "",
+						civilStatus: "0",
+						educationalAttainment: "",
+						username: user.username,
+						password: user.password,
+					},
+				],
+			},
 		});
 
 		console.log(this.state.user.jobSeeker);
+		console.log(this.state.currentUser.jobSeeker);
 	};
 
 	registerEmployer = async (user) => {
@@ -595,42 +647,6 @@ export class App extends Component {
 
 	render() {
 		return (
-			// <div className='app'>
-			// 	<Router>
-			// 		<Switch>
-			// 			<Route
-			// 				exact
-			// 				path='/login'
-			// 				render={() => (
-			// 					<Login
-			// 						handleLogin={this.handleLogin}
-			// 						user={this.state.user}
-			// 					/>
-			// 				)}
-			// 			/>
-			// 			<Route exact path='/signup' render={() => <SignUp />} />
-			// 			<Route exact path='/' component={LandingPage} />
-			// 			<Route exact path='/employer' component={Employer} />
-			// 			<Route exact path='/jobseeker' component={JobSeeker} />
-
-			// 			<Route exact path='/jobseeker/route1' component={Route1} />
-			// 			<Route exact path='/jobseeker/route2' component={Route2} />
-			// 			<Route exact path='/jobseeker/route3' component={Route3} />
-
-			// 			<Route
-			// 				exact
-			// 				path='*'
-			// 				component={() => (
-			// 					<div>
-			// 						<Link to='/'>Back</Link>
-			// 						<h2>Page not Found!</h2>
-			// 					</div>
-			// 				)}
-			// 			/>
-			// 		</Switch>
-			// 	</Router>
-			// </div>
-
 			<div className='app'>
 				<Router>
 					<Switch>
@@ -662,12 +678,6 @@ export class App extends Component {
 						<Route
 							exact
 							path='/home'
-							// component={() => (
-							// 	<JobSeeker
-							// 		infos={this.state.infos}
-							// 		activePage={this.state.activePage}
-							// 	/>
-							// )}
 							render={() => (
 								<Home
 									activePage={this.state.activePage}

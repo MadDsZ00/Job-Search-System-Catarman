@@ -7,6 +7,7 @@ import Eye from "../Images/Eye.png";
 import LeftArrow from "../Images/LeftArrow.png";
 import "./Login.css";
 import AuthIndication from "./AuthIndication";
+import { WelcomeWindow } from "./WelcomeWindow";
 
 export class SignUp extends Component {
 	state = {
@@ -126,6 +127,10 @@ export class SignUp extends Component {
 		this.props.toggleSignUp(false);
 	};
 
+	toggleSignUpTrue = () => {
+		this.props.toggleSignUp(true);
+	};
+
 	render() {
 		const {
 			firstName,
@@ -174,7 +179,7 @@ export class SignUp extends Component {
 							{this.props.isSignUp === true && (
 								<AuthIndication
 									method={this.toggleSignUpFalse}
-									delay={5}
+									delay={8}
 								/>
 							)}
 						</div>
